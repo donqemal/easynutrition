@@ -1,11 +1,14 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {SupabaseService} from '../../services/supabase.service';
 import {Router} from '@angular/router';
+import {FooterComponent} from '../../components/footer/footer.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [],
+  imports: [
+    FooterComponent
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })

@@ -2,12 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {SupabaseService} from '../../services/supabase.service';
 import {NgxEditorModule, toHTML} from 'ngx-editor';
 import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
+import {FooterComponent} from '../../components/footer/footer.component';
 
 @Component({
   selector: 'app-nutrition-guide',
   standalone: true,
   imports: [
-    NgxEditorModule
+    NgxEditorModule,
+    FooterComponent
   ],
   templateUrl: './nutrition-guide.component.html',
   styleUrl: './nutrition-guide.component.scss'

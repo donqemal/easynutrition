@@ -43,3 +43,9 @@ button {
 button:hover {
   transform: scale(1.06);
 }
+
+::ng-deep .custom {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}

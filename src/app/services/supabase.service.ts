@@ -33,9 +33,13 @@ export class SupabaseService {
 
 
   async updateNutritionGuide(content: string): Promise<void> {
-    await this.supabase
-      .from('nutrition_guide')
-      .upsert([{description: content}]);
+    this.getSession().subscribe(async (session) => {
+      let editor = session.data.session.user.email;
+
+      await this.supabase
+        .from('nutrition_guide')
+        .upsert([{description: content, editor: editor}]);
+    })
   }
 
 

@@ -11,7 +11,4 @@ import {HeaderComponent} from './components/header/header.component';
 })
 export class AppComponent {
 
-  sendMail() {
-    window.location.href = 'mailto:info@easynutrition.ch';
-  }
 }

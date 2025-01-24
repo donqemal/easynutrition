@@ -1,6 +1,12 @@
 .NgxEditor__Wrapper {
   width: 96.5%;
   margin: 20px auto auto;
+
+  .menu {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
 }
 
 h1 {
@@ -22,7 +28,7 @@ h2 {
   cursor: pointer;
   display: block;
   transition: all 0.3s;
-  margin: 20px auto 200px;
+  margin: 20px auto 50px;
 }
 
 .save:hover {

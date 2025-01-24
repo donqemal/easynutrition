@@ -17,6 +17,10 @@ h2 {
   background-color: white;
   max-width: 90vw;
   border-radius: 5px;
-  padding: 10px;
-  margin: 0 auto 200px;
+  padding: 10px 20px;
+  margin: 0 auto 50px;
+
+  ::ng-deep img {
+    max-width: 100% !important;
+  }
 }
