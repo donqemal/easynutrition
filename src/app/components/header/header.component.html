@@ -1,0 +1,25 @@
+<div class="header-container">
+  <img src="assets/easynutrition_logo.png" alt="Logo" routerLink="">
+
+  @if (isAdmin) {
+    <div class="routes">
+      <a routerLink="">Home</a>
+      <a routerLink="edit">Bearbeiten</a>
+      <a routerLink="login">Konto</a>
+    </div>
+    <div class="routes-mobile">
+      @if (!showMenu) {
+        <img src="assets/menu.png" alt="Menu" (click)="toggleMenu()">
+      } @else {
+        <img src="assets/close.png" class="close" alt="Close" (click)="toggleMenu()">
+      }
+      @if (showMenu) {
+        <div #menu class="show-routes">
+          <a (click)="routeTo('')">Home</a>
+          <a (click)="routeTo('edit')">Bearbeiten</a>
+          <a (click)="routeTo('login')">Konto</a>
+        </div>
+      }
+    </div>
+  }
+</div>
