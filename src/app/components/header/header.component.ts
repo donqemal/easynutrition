@@ -1,12 +1,14 @@
 import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
 import {SupabaseService} from '../../services/supabase.service';
+import {NgClass} from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
   imports: [
-    RouterLink
+    RouterLink,
+    NgClass
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'

@@ -18,9 +18,15 @@ h2 {
   max-width: 90vw;
   border-radius: 5px;
   padding: 10px 20px;
-  margin: 0 auto 50px;
+  margin: 50px auto;
 
   ::ng-deep img {
     max-width: 100% !important;
   }
+}
+
+::ng-deep .custom {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
 }

@@ -1,12 +1,13 @@
-<h1>EasyNutrition verfügbar in:</h1>
-<h2>
-  {{ remainingTime }}
-</h2>
-
-@if (isAdmin) {
-  <div class="container">
-    <div [innerHTML]="nutritionGuide"></div>
-  </div>
-}
-
-<app-footer></app-footer>
+<div class="wrapper">
+  @if (!isAdmin) {
+    <h1>EasyNutrition verfügbar in:</h1>
+    <h2>
+      {{ remainingTime }}
+    </h2>
+  } @else {
+    <div class="container">
+      <div [innerHTML]="nutritionGuide"></div>
+    </div>
+  }
+</div>
+<app-footer [class]="!isAdmin ? 'custom' : ''"></app-footer>

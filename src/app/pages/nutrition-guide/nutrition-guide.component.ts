@@ -37,7 +37,7 @@ export class NutritionGuideComponent implements OnInit {
       if (diff <= 0) {
         clearInterval(this.releaseTime);
         this.remainingTime = "00:00:00";
-        return;
+        this.isAdmin = true;
       }
 
       let totalSeconds = Math.floor(diff / 1000);

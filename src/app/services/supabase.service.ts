@@ -32,7 +32,7 @@ export class SupabaseService {
   }
 
 
-  async updateNutritionGuide(content: string): Promise<void> {
+  async postNutritionGuide(content: string): Promise<void> {
     this.getSession().subscribe(async (session) => {
       let editor = session.data.session.user.email;
 

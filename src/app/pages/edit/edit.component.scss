@@ -7,6 +7,10 @@
     top: 0;
     z-index: 2;
   }
+
+  ::ng-deep .NgxEditor__ImageWrapper {
+    max-width: 100% !important;
+  }
 }
 
 h1 {

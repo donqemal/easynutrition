@@ -17,7 +17,6 @@ import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 export class EditComponent implements OnInit, OnDestroy {
   isAdmin: boolean = false;
   editor!: Editor;
-  nutritionGuide: any;
   form = new FormGroup({
     editorContent: new FormControl('', Validators.required()),
   });
@@ -60,7 +59,7 @@ export class EditComponent implements OnInit, OnDestroy {
     const content = this.editor.view.state.doc.toJSON();
     if (this.isAdmin) {
       try {
-        await this.supabaseService.updateNutritionGuide(content);
+        await this.supabaseService.postNutritionGuide(content);
         alert('Ernährungsguide wurde erfolgreich aktualisiert!');
       } catch (error) {
         console.error('Error saving changes:', error);
