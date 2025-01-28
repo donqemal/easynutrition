@@ -2,14 +2,16 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Editor, NgxEditorModule, Toolbar, Validators} from "ngx-editor";
 import {SupabaseService} from '../../services/supabase.service';
 import {Router} from '@angular/router';
-import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NutritionGuide} from '../../types/types';
 
 @Component({
   selector: 'app-edit',
   standalone: true,
   imports: [
     NgxEditorModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   templateUrl: './edit.component.html',
   styleUrl: './edit.component.scss'
@@ -17,6 +19,11 @@ import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 export class EditComponent implements OnInit, OnDestroy {
   isAdmin: boolean = false;
   editor!: Editor;
+  nutritionGuide: NutritionGuide = {
+    description: '',
+    editor: '',
+    commit_message: ''
+  };
   form = new FormGroup({
     editorContent: new FormControl('', Validators.required()),
   });
@@ -56,11 +63,12 @@ export class EditComponent implements OnInit, OnDestroy {
   }
 
   async saveChanges() {
-    const content = this.editor.view.state.doc.toJSON();
     if (this.isAdmin) {
       try {
-        await this.supabaseService.postNutritionGuide(content);
+        this.nutritionGuide.description = this.editor.view.state.doc.toJSON();
+        await this.supabaseService.postNutritionGuide(this.nutritionGuide);
         alert('Ernährungsguide wurde erfolgreich aktualisiert!');
+        this.nutritionGuide.commit_message = '';
       } catch (error) {
         console.error('Error saving changes:', error);
         alert('Fehler beim Speichern der Änderungen.');

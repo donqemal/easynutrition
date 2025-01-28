@@ -5,6 +5,7 @@
     <div class="routes">
       <a routerLink="">Home</a>
       <a routerLink="edit">Bearbeiten</a>
+      <a routerLink="change-history">Änderungshistorie</a>
       <a routerLink="login">Konto</a>
     </div>
     <div class="routes-mobile">
@@ -17,6 +18,7 @@
         <div #menu class="show-routes">
           <a (click)="routeTo('')">Home</a>
           <a (click)="routeTo('edit')">Bearbeiten</a>
+          <a (click)="routeTo('change-history')">Änderungshistorie</a>
           <a (click)="routeTo('login')">Konto</a>
         </div>
       }

@@ -5,4 +5,10 @@
   </div>
 </form>
 
-<button class="save" (click)="saveChanges()">Speichern</button>
+<div class="input-container">
+  <input type="text" id="input" required="" [(ngModel)]="nutritionGuide.commit_message">
+  <label for="input" class="label">Commit Message</label>
+  <div class="underline"></div>
+</div>
+
+<button class="save" (click)="saveChanges()" [disabled]="nutritionGuide.commit_message === ''">Speichern</button>

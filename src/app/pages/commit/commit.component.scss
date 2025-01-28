@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  gap: 20px;
+}
+
+.version {
+  flex: 1;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 15px;
+  overflow: auto;
+  max-height: 90vh;
+}
+
+.version h1, .version h2, .version h3, .version p {
+  margin: 0;
+  padding: 5px 0;
+}
+
+::ng-deep .added {
+  background-color: #e6ffe6;
+  color: #006400;
+  font-weight: bold;
+}
+
+::ng-deep .removed {
+  background-color: #fdd6d6;
+  color: #8b0000;
+  font-weight: bold;
+}
+
+
+
+.line {
+  padding: 5px;
+}

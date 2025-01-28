@@ -1,0 +1,35 @@
+.container {
+  background-color: white;
+  max-width: 90vw;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin: 50px auto;
+
+  p {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: darkgray;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: all 0.3s;
+
+    .commit-message {
+      color: white;
+      font-size: 18px;
+    }
+
+    .open-commit {
+      font-size: 38px;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+    &:hover {
+      background-color: gray;
+    }
+  }
+}
+
