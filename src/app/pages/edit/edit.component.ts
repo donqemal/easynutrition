@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Editor, NgxEditorModule, Toolbar, Validators} from "ngx-editor";
+import {Editor, NgxEditorModule, toHTML, Toolbar, Validators} from "ngx-editor";
 import {SupabaseService} from '../../services/supabase.service';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -77,4 +77,7 @@ export class EditComponent implements OnInit, OnDestroy {
       alert('Nicht autorisiert, um Änderungen vorzunehmen!');
     }
   }
+
+  protected readonly toHTML = toHTML;
+  protected readonly String = String;
 }
