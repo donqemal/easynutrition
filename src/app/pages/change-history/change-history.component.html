@@ -8,11 +8,11 @@
       <b style="font-weight: 500">Commit Message:</b>
         {{ change.commit_message }}
       </span><br/>
-      <b>Datum:</b> {{ change.created_at | date: 'dd.MM.YYYY HH:SS' }}<br/>
+      <b>Datum:</b> {{ change.created_at | date: 'dd.MM.yyyy HH:mm' }}<br/>
       <b>Editor:</b> {{ change.editor }}<br/>
     </span>
       <span class="open-commit">
-      >
+      ‣
     </span>
     </p>
   }
