@@ -11,4 +11,10 @@ import {HeaderComponent} from './components/header/header.component';
 })
 export class AppComponent {
 
+  scrollToTop(behaviour?: 'smooth') {
+    window.scrollTo({
+      top: 0,
+      behavior: behaviour || 'auto'
+    });
+  }
 }
