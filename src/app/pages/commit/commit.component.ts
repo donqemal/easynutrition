@@ -1,4 +1,4 @@
-import {Component, OnInit, ElementRef, ViewChild, AfterViewInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {SupabaseService} from '../../services/supabase.service';
 import {NgClass, NgForOf, NgIf} from '@angular/common';
@@ -21,11 +21,13 @@ export class CommitComponent implements OnInit, AfterViewInit {
   secondId: number = 0;
   oldHtml: string = '';
   newHtml: string = '';
+  isSameHtml: boolean = false;
 
   @ViewChild('oldContent') oldContent!: ElementRef;
   @ViewChild('newContent') newContent!: ElementRef;
 
-  constructor(private supabaseService: SupabaseService, private router: Router) {}
+  constructor(private supabaseService: SupabaseService, private router: Router) {
+  }
 
   ngOnInit() {
     const url = this.router.url.split('/');
@@ -81,12 +83,16 @@ export class CommitComponent implements OnInit, AfterViewInit {
         newEl.classList.add('added');
       }
       newContent += newEl.outerHTML;
-    });
 
-    setTimeout(() => {
-      this.oldContent.nativeElement.innerHTML = oldContent;
-      this.newContent.nativeElement.innerHTML = newContent;
-    }, 0);
+    });
+    if (oldContent === newContent) {
+      this.isSameHtml = true;
+    } else {
+      setTimeout(() => {
+        this.oldContent.nativeElement.innerHTML = oldContent;
+        this.newContent.nativeElement.innerHTML = newContent;
+      }, 0);
+    }
   }
 
   ngAfterViewInit() {

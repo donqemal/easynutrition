@@ -5,6 +5,15 @@
   gap: 20px;
 }
 
+.no-changes-container {
+  flex-direction: column;
+  h1 {
+    color: #766565;
+    border-bottom: 1px solid #766565;
+    padding-bottom: 20px;
+  }
+}
+
 .version {
   flex: 1;
   border: 1px solid #ccc;
@@ -12,11 +21,6 @@
   padding: 15px;
   overflow: auto;
   max-height: 90vh;
-}
-
-.version h1, .version h2, .version h3, .version p {
-  margin: 0;
-  padding: 5px 0;
 }
 
 ::ng-deep .added {

@@ -1,10 +1,21 @@
 <div class="container">
-  <div class="version" #oldContent>
-    <h2>Alte Version</h2>
-    <div #oldContent></div>
-  </div>
-  <div class="version" #newContent>
-    <h2>Neue Version</h2>
-    <div #newContent></div>
-  </div>
+  @if (!isSameHtml) {
+    <div>
+      <h2>Alte Version</h2>
+      <div class="version" #oldContent>
+        <div #oldContent></div>
+      </div>
+    </div>
+    <div>
+      <h2>Neue Version</h2>
+      <div class="version" #newContent>
+        <div #newContent></div>
+      </div>
+    </div>
+  } @else {
+    <div class="no-changes-container">
+      <h1>Keine Änderungen!</h1>
+      <div [innerHTML]="newHtml"></div>
+    </div>
+  }
 </div>
