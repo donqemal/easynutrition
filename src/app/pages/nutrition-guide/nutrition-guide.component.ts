@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {SupabaseService} from '../../services/supabase.service';
 import {NgxEditorModule, toHTML} from 'ngx-editor';
 import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
@@ -15,8 +15,8 @@ import {FooterComponent} from '../../components/footer/footer.component';
   styleUrl: './nutrition-guide.component.scss'
 })
 export class NutritionGuideComponent implements OnInit {
-  releaseTime: any;
-  remainingTime: string = '';
+  @ViewChild('container') div!: ElementRef;
+
   isAdmin: boolean = false;
   nutritionGuide: SafeHtml = '';
 
@@ -28,32 +28,37 @@ export class NutritionGuideComponent implements OnInit {
     this.supabase.getNutritionGuide().then((content) => {
       const html = toHTML(JSON.parse(content as string));
       this.nutritionGuide = this.sanitizer.bypassSecurityTrustHtml(html);
-    });
-    this.releaseTime = setInterval(() => {
-      let now = new Date();
-      let end = new Date('2025-01-31T23:59:59'); // Release Date
-      let diff = end.getTime() - now.getTime();
-
-      if (diff <= 0) {
-        clearInterval(this.releaseTime);
-        this.remainingTime = "00:00:00";
-        this.isAdmin = true;
-      }
-
-      let totalSeconds = Math.floor(diff / 1000);
-      let days = Math.floor(totalSeconds / (24 * 60 * 60));
-      totalSeconds %= (24 * 60 * 60);
-      let hours = Math.floor(totalSeconds / (60 * 60));
-      totalSeconds %= (60 * 60);
-      let minutes = Math.floor(totalSeconds / 60);
-      let seconds = totalSeconds % 60;
-
-      this.remainingTime = `${days} ${days == 1 ? 'Tag' : 'Tage'}, ${this.pad(hours)} ${hours == 1 ? 'Stunde' : 'Stunden'}, ${this.pad(minutes)} ${minutes == 1 ? 'Minute' : 'Minuten'}, ${this.pad(seconds)} ${seconds <= 1 ? 'Sekunde' : 'Sekunden'}`;
+      this.observeContainerLoading();
     });
   }
 
-  pad(value: number): string {
-    return value < 10 ? `0${value}` : `${value}`;
+  private observeContainerLoading() {
+    const observer = new MutationObserver(() => {
+      if (this.div) {
+        const element = this.div.nativeElement;
+
+        element.style.height = '0px';
+        element.style.overflow = 'hidden';
+        element.style.transition = 'height 2s ease-in-out';
+
+        setTimeout(() => {
+          this.expandToFullHeight(element, true);
+        }, 50);
+
+        window.addEventListener('resize', () => this.expandToFullHeight(element, false));
+      }
+    });
+
+    observer.observe(document.body, {childList: true, subtree: true});
+  }
+
+  private expandToFullHeight(element: HTMLElement, isFirstTime: boolean) {
+    if (isFirstTime) {
+      const fullHeight = element.scrollHeight;
+      element.style.height = `${fullHeight}px`;
+    } else {
+      element.style.height = 'auto';
+    }
   }
 
   setAdmins() {

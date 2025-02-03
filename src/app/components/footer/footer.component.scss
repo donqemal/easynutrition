@@ -1,3 +1,12 @@
+@keyframes setNormalMargin {
+  0% {
+    margin-top: 100vh;
+  }
+  100% {
+    margin-top: 0;
+  }
+}
+
 footer {
   padding-top: 3px;
   bottom: 0;
@@ -5,7 +14,8 @@ footer {
   width: 100%;
   text-align: center;
   background-color: rgb(93, 39, 246);
-  color: white
+  color: white;
+  animation: setNormalMargin 2s;
 }
 
 .mail-icon {
